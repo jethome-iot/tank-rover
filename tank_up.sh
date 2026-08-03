@@ -15,13 +15,13 @@ cd "$(dirname "$0")"
 
 IP=$(hostname -I | awk '{print $1}')
 
-echo "[tank] docker container up..."
+echo "[tank] waiting docker container up..."
 docker compose up -d
 
-echo "[tank] жду, пока поднимется camera_bridge (3с)..."
+echo "[tank] waiting camera_bridge (3с)..."
 sleep 3
 
-echo "[tank] запускаю аппаратный энкодер камеры на хосте..."
+echo "[tank] waiting camera encoder..."
 # gop=10 -> keyframe 3x/сек (меньше артефактов при потерях UDP)
 # bps=4M -> щадящий битрейт для WiFi
 gst-launch-1.0 v4l2src device=/dev/video45 ! \
@@ -32,12 +32,9 @@ gst-launch-1.0 v4l2src device=/dev/video45 ! \
 echo $! > /tmp/tank_camera.pid
 
 echo ""
-echo "[tank] ГОТОВО."
+echo "[tank] READY."
 echo ""
-echo "  На ПК запусти геймпад:"
+echo "  Launch gamepad with:"
 echo "    python3 pc/ds4_sender.py --ip $IP"
 echo ""
 echo "  Lichtblick:       ws://$IP:8765"
-echo "  Логи контейнера:  docker compose logs -f"
-echo "  Лог камеры:       tail -f /tmp/tank_camera.log"
-echo "  Остановить:       ./tank_down.sh"
