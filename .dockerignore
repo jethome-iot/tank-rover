@@ -1,0 +1,5 @@
+ros_ws/build
+ros_ws/install
+ros_ws/log
+ros_ws/core.*
+ros_ws/**/__pycache__

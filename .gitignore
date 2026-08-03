@@ -1,0 +1,15 @@
+# ROS build artifacts
+ros_ws/build/
+ros_ws/install/
+ros_ws/log/
+# скопированный питон-модуль serial (кладётся вручную на устройстве)
+ros_ws/serial/
+# вендорский драйвер лидара (см. README, ставится отдельно)
+ros_ws/src/
+# coredumps
+core.*
+# python
+__pycache__/
+*.pyc
+# runtime
+/tmp/tank_camera.*
