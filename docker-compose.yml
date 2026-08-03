@@ -1,0 +1,21 @@
+services:
+  ros:
+    build: .
+    image: tank-ros:local
+    container_name: tank-ros
+    network_mode: host
+    ipc: host
+    dns:
+      - 8.8.8.8
+      - 1.1.1.1
+    devices:
+      - "/dev/ttyS8:/dev/ttyS8"   # VESC (UART8, пины 11/13)
+      - "/dev/ttyS3:/dev/ttyS3"   # лидар (UART3, пины 16/18)
+    volumes:
+      - "./ros_ws:/root/ros_ws"
+    group_add:
+      - dialout
+    restart: unless-stopped
+    environment:
+      - ROS_DOMAIN_ID=0
+    command: ["/root/ros_ws/tank_inside.sh"]
