@@ -38,7 +38,7 @@ python3 /root/ros_ws/vesc_node.py --ros-args \
 
 # --- Миксер: /cmd_vel -> борта. max_duty=0.4 потолок (геймпад дозирует внутри) ---
 python3 /root/ros_ws/twist_mixer.py --ros-args \
-    -p max_duty:=0.4 &
+    -p max_duty:=0.8 &
 
 # --- Приёмник геймпада: UDP :9999 -> /cmd_vel ---
 python3 /root/ros_ws/ds4_receiver.py --ros-args \
